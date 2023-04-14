@@ -3,15 +3,19 @@
 // to generate synatx go to pipline syntax and genrate eg: stage two shell syntax
 pipeline {
     agent any
-    environment {
-        ENV_URL = 'env.pipline.com'
+    environment {                   // declaring env variables
+        ENV_URL = 'env.pipline.com'  // gloabal var
     }
 
     stages {
         stage('stage one') {
+
+        environment {                   // declaring env variables
+        ENV_URL = 'stage.pipline.com'  // local var
+    }
             steps {
                 echo 'Hello World'
-                sh "echo ENV_URL = ${ENV_URL}"
+                sh "echo ENV_URL = ${ENV_URL}"   // calling variable 
             }
         }
     stage('stage two') {
