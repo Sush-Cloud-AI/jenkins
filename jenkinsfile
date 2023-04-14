@@ -5,6 +5,7 @@ pipeline {
     agent any
     environment {                   // declaring env variables
         ENV_URL = 'env.pipline.com'  // gloabal var
+        SSH_CRED = credentials('ssh-centos7')
     }
 
     stages {
@@ -28,10 +29,14 @@ pipeline {
         }
     stage('stage three') {
             steps {
-                echo 'Hello devops'    
+                echo 'Hello devops'
+                sh "env"   
             }
         }
     
     
     }
 }
+
+
+
