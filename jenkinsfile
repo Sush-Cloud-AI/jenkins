@@ -1,0 +1,33 @@
+
+// pipeline ... sample 
+// to generate synatx go to pipline syntax and genrate eg: stage two shell syntax
+pipeline {
+    agent any
+    environment {
+        ENV_URL = 'env.pipline.com'
+    }
+
+    stages {
+        stage('stage one') {
+            steps {
+                echo 'Hello World'
+                sh "echo ENV_URL = ${ENV_URL}"
+            }
+        }
+    stage('stage two') {
+            steps {
+                sh '''
+                echo "hai"
+                echo "welcome to Devops"
+                '''    
+            }
+        }
+    stage('stage three') {
+            steps {
+                echo 'Hello devops'    
+            }
+        }
+    
+    
+    }
+}
