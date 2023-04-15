@@ -15,9 +15,9 @@ pipeline {
         password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
     }
 
-    triggers {
-        cron('H/2 * * * *')
-    }
+//    triggers {                    // will trigger the pipeline as per the cron configured . use cron guru to get the cron expression
+//        cron('H/2 * * * *')
+//    }
 
     stages {
         stage('stage one') {
