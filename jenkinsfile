@@ -7,18 +7,9 @@ pipeline {
         ENV_URL = 'env.pipline.com'  // gloabal var
         SSH_CRED = credentials('ssh-centos7') // masking the credentials using jenins secret manager 
     }
-    parameters {       // this gives options while bulding same as freestyle job . need to run first time to get build with paramete option
-        string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
-        text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
-        booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
-        choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
-        password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
+   tools {
+        maven 'apache-maven-3.0.1' 
     }
-
-//    triggers {                    // will trigger the pipeline as per the cron configured . use cron guru to get the cron expression
-//        cron('H/2 * * * *')
-//    }
-
     stages {
         stage('stage one') {
 
@@ -27,24 +18,11 @@ pipeline {
     }
             steps {
                 echo 'Hello World'
-                sh "echo ENV_URL = ${ENV_URL}"   // calling variable 
+                sh "echo ENV_URL = ${ENV_URL}"   // calling variable
+                sh "mvn --version" 
             }
         }
-    stage('stage two') {
-            steps {
-                sh '''
-                echo "hai"
-                echo "welcome to Devops"
-                '''    
-            }
-        }
-    stage('stage three') {
-            steps {
-                echo 'Hello devops'
-                sh "env"    // will show all the env variable . now used to check if the password is masked 
-            }
-        }
-    
+  
     
     }
 }
