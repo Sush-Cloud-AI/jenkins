@@ -12,6 +12,7 @@ pipeline{
             stage('two'){
                 steps{
                     sh "sleep 10"
+                    sh "ssdsd" /// to generate failure 
                 }
             }
             stage('three'){
@@ -30,7 +31,7 @@ pipeline{
     }
 post {                                     // post is used at the end of the pipline to clean up or do specific tasks bepending on the status of the piple job status 
         failure { 
-            sh "echo job failed"
+            cleanWs()                     // to clean the work space
         }
         success { 
             sh "echo job completed"
