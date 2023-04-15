@@ -1,0 +1,58 @@
+// pipeline ... sample 
+// to generate synatx go to pipline syntax and genrate eg: stage two shell syntax
+pipeline {
+    agent any
+    environment {                   // declaring env variables
+        ENV_URL = 'env.pipline.com'  // gloabal var
+        SSH_CRED = credentials('ssh-centos7') // masking the credentials using jenins secret manager 
+    }
+    //parameters {       // this gives options while bulding same as freestyle job . need to run first time to get build with paramete option
+        //string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+        //text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
+        //booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
+        //choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
+        //password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
+   // }
+   tools {
+        maven 'maven-3.8.3' // will temporly install maven build to 3.8.3 .. before use configure the software eg: maven in global build tool for the rquired version and paste the name that is configued here 
+    }
+    stages {
+        stage('stage one') {
+
+        environment {                   // declaring env variables
+        ENV_URL = 'stage.pipline.com'  // local var
+    }
+            steps {
+                echo 'Hello World'
+                sh "echo ENV_URL = ${ENV_URL}"   // calling variable
+                sh "mvn --version" 
+            }
+        }
+  
+    stage('stage two') {
+
+        //when {environment name: 'CHOICE' , value: 'One'}  // this stage will execute when the choice is one 
+        when { branch 'main'} // will run when the branch is not master . this will not execute as our branch is main .  when { not { branch 'main'}}} this command will execute main. confusing check
+    
+
+
+
+
+
+//        input {            /// will promt while running the second stage to ask if we need to continue to run thos step . used in crtical jobs such as deleting the infra etc.
+//                message "Should we continue? did you check your devops lead"
+//                ok "Yes, we should."
+//                submitter "alice,bob"   // only this user can approve in orgs // now it running as administrator so its over riding 
+//                parameters {
+//                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+//               }
+//            }
+
+            steps {
+                sh '''
+                echo "hai"
+                '''    
+            }
+        }
+    }
+}
