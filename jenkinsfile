@@ -1,7 +1,7 @@
 pipeline{
     agent any
     stages{
-        stage('parallel stage') {
+        stage('parallel stage') {  // will run all the stahes in the parallel block in parallel that has no dependencies on one other 
         parallel{   
             stage('one'){
                 steps{
@@ -27,6 +27,17 @@ pipeline{
 
 }
 }
+post {                                     // post is used at the end of the pipline to clean up or do specific tasks bepending on the status of the piple job status 
+        failure { 
+            sh "echo job failed"
+        }
+        success { 
+            sh "echo job completed"
+        }
+        aborted { 
+            sh "echo job aborted"
+        }
+    }
 
     }
     }
