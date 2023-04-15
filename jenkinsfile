@@ -8,7 +8,7 @@ pipeline {
         SSH_CRED = credentials('ssh-centos7') // masking the credentials using jenins secret manager 
     }
    tools {
-        maven 'apache-maven-3.0.1' 
+        maven 'maven-3.8.3' // will temporly install maven build to 3.8.3 .. before use 
     }
     stages {
         stage('stage one') {
