@@ -33,7 +33,7 @@ pipeline {
     stage('stage two') {
 
         //when {environment name: 'CHOICE' , value: 'One'}  // this stage will execute when the choice is one 
-        when{not { branch 'main'}} // will run when the branch is not master .stage will execute for us as ours is main 
+        when{ not { branch 'main'}} // will run when the branch is not master .stage will execute for us as ours is main 
 
 
 
@@ -46,7 +46,7 @@ pipeline {
 //                parameters {
 //                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
 //               }
-            }
+//            }
 
             steps {
                 sh '''
@@ -55,7 +55,7 @@ pipeline {
             }
         }
     }
-
+}
 
 
 
