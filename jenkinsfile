@@ -7,13 +7,13 @@ pipeline {
         ENV_URL = 'env.pipline.com'  // gloabal var
         SSH_CRED = credentials('ssh-centos7') // masking the credentials using jenins secret manager 
     }
-    parameters {       // this gives options while bulding same as freestyle job . need to run first time to get build with paramete option
+    //parameters {       // this gives options while bulding same as freestyle job . need to run first time to get build with paramete option
         //string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
         //text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
         //booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
-        choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
+        //choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
         //password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
-    }
+   // }
    tools {
         maven 'maven-3.8.3' // will temporly install maven build to 3.8.3 .. before use configure the software eg: maven in global build tool for the rquired version and paste the name that is configued here 
     }
