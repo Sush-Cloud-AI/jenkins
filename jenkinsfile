@@ -7,7 +7,7 @@ pipeline{
             stage('one'){
                 steps{
                     sh "sleep 5"
-                    sh "ifconfig"
+                    sh "echo ifconfig"
                 }
             }
 
