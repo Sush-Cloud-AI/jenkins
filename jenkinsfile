@@ -5,25 +5,25 @@ pipeline{
         parallel{   
             stage('one'){
                 steps{
-                    sh "sleep 10"
+                    sh "sleep 5"
                 }
             }
 
             stage('two'){
                 steps{
-                    sh "sleep 20"
+                    sh "sleep 10"
                 }
             }
             stage('three'){
                 steps{
-                    sh "sleep 30"
+                    sh "sleep 15"
                 }
             }
         }
     }
             stage('four'){
                 steps{
-                    sh "sleep 40"
+                    sh "sleep 20"
 
 }
 }
