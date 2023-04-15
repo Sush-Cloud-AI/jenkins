@@ -1,18 +1,20 @@
 pipeline{
-    agent any
+    //agent any
+    agent { label 'java'}  // to use the agent we added . use the label java 
     stages{
         stage('parallel stage') {  // will run all the stahes in the parallel block in parallel that has no dependencies on one other 
         parallel{   
             stage('one'){
                 steps{
                     sh "sleep 5"
+                    sh "curl ifconfig.co"
                 }
             }
 
             stage('two'){
                 steps{
                     sh "sleep 10"
-                    sh "ssdsd" /// to generate failure 
+//                    sh "ssdsd" /// to generate failure 
                 }
             }
             stage('three'){
